@@ -1,0 +1,15 @@
+#define BASE_SPEED 50
+#define CORNER_SPEED 45
+#define MAX_SPEED 100
+#define DEBUG_MODE false
+
+#define RIGHT_EDGE 0b10000000000
+#define LEFT_EDGE 0b00000000001
+
+#define LEFT_CENTER_TRESHOLD 16
+#define RIGHT_CENTER_TRESHOLD 96
+
+#define BRAKE_TIME_MILISECONDS 20
+
+#define KP 9
+#define KD 6

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../linefollower_esp32s3_V1.0"
+		}
+	],
+	"settings": {}
+}
