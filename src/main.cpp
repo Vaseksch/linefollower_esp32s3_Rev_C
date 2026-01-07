@@ -9,6 +9,10 @@
 
 MPU6050 mpu(Wire);
 
+double_t new_time = 0;
+double_t old_time = 0;
+double_t dt = 0;
+
 int32_t last_error = 0;
 float_t integral = 0;
 int16_t derivative = 0;
@@ -42,6 +46,10 @@ void setup()
 
 void loop()
 {
+  new_time = millis();
+  dt = (new_time - old_time) / 1000;
+  old_time = new_time;
+
   sensor_read(&sensor_values, &error);
   if (sensor_values == LEFT_EDGE)
   {
@@ -62,10 +70,13 @@ void loop()
       motorB(CORNER_SPEED);
       sensor_read(&sensor_values, &error);
     }
+  }else if (sensor_values == 0){
+      motorA(MIN_SPEED);
+      motorB(MIN_SPEED);
   }
   else
   {
-    derivative = (error - last_error);
+    derivative = (error - last_error) / dt;
 
     int correction = (KP * error) + (KD * derivative);
 

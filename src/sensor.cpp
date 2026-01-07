@@ -19,7 +19,7 @@ const int sensors_pin[11] = {
     analog_9,
     analog_10
 };
-const int sensor_position_weight[11] = {-8, -6, -4, -3, -1, 0, 1, 3, 4, 6, 8};
+const int sensor_position_weight[11] = {-16, -8, -4, -2, -1, 0, 1, 2, 4, 8, 16};
 int sensor_treshold[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 

@@ -1,5 +1,6 @@
 #define BASE_SPEED 50
 #define CORNER_SPEED 45
+#define MIN_SPEED 10
 #define MAX_SPEED 100
 #define DEBUG_MODE false
 
@@ -11,5 +12,5 @@
 
 #define BRAKE_TIME_MILISECONDS 20
 
-#define KP 9
-#define KD 6
+#define KP 14
+#define KD 1
