@@ -20,7 +20,6 @@ int16_t derivative = 0;
 uint16_t sensor_values = 0;
 int32_t error = 0;
 
-
 void setup()
 {
   pin_setup();
@@ -51,8 +50,14 @@ void loop()
   old_time = new_time;
 
   sensor_read(&sensor_values, &error);
-  if (sensor_values == LEFT_EDGE)
+
+  switch (sensor_values)
   {
+  case 0:
+    motorA(MIN_SPEED);
+    motorB(MIN_SPEED);
+    break;
+  case LEFT_EDGE:
     motor_brake(BRAKE_TIME_MILISECONDS);
     while (sensor_values < LEFT_CENTER_TRESHOLD || sensor_values > RIGHT_CENTER_TRESHOLD)
     {
@@ -60,9 +65,8 @@ void loop()
       motorB(-CORNER_SPEED);
       sensor_read(&sensor_values, &error);
     }
-  }
-  else if (sensor_values == RIGHT_EDGE)
-  {
+    break;
+  case RIGHT_EDGE:
     motor_brake(BRAKE_TIME_MILISECONDS);
     while (sensor_values < LEFT_CENTER_TRESHOLD || sensor_values > RIGHT_CENTER_TRESHOLD)
     {
@@ -70,12 +74,9 @@ void loop()
       motorB(CORNER_SPEED);
       sensor_read(&sensor_values, &error);
     }
-  }else if (sensor_values == 0){
-      motorA(MIN_SPEED);
-      motorB(MIN_SPEED);
-  }
-  else
-  {
+    break;
+
+  default:
     derivative = (error - last_error) / dt;
 
     int correction = (KP * error) + (KD * derivative);
@@ -90,5 +91,6 @@ void loop()
 
     motorA(motor_a_speed);
     motorB(motor_b_speed);
+    break;
   }
 }
