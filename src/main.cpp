@@ -17,6 +17,12 @@ int32_t last_error = 0;
 float_t integral = 0;
 int16_t derivative = 0;
 
+int32_t correction;
+
+int32_t speed;
+int32_t motor_a_speed;
+int32_t motor_b_speed;
+
 uint16_t sensor_values = 0;
 int32_t error = 0;
 
@@ -79,12 +85,12 @@ void loop()
   default:
     derivative = (error - last_error) / dt;
 
-    int correction = (KP * error) + (KD * derivative);
+    correction = (KP * error) + (KD * derivative);
 
     last_error = error;
 
-    int motor_a_speed = BASE_SPEED - correction;
-    int motor_b_speed = BASE_SPEED + correction;
+    motor_a_speed = BASE_SPEED - correction;
+    motor_b_speed = BASE_SPEED + correction;
 
     motor_a_speed = constrain(motor_a_speed, -MAX_SPEED, MAX_SPEED);
     motor_b_speed = constrain(motor_b_speed, -MAX_SPEED, MAX_SPEED);
