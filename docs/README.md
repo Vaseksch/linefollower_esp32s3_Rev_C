@@ -152,4 +152,3 @@ The software is structured to allow easy tuning and future feature expansion.
   - Orientation and motion data
   - Possible use for improved control or diagnostics
 
-This project is released under the MIT License.
