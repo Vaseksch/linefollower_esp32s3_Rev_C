@@ -1,9 +1,8 @@
 #include "../lib/sensor.h"
 #include "../lib/board_config.h"
+#include "../lib/constants.h"
 #include <Arduino.h>
 #include <stdint.h>
-
-#define SENSOR_COUNT 11
 
 const int sensor_count = 9;
 const int sensors_pin[11] = {
@@ -49,16 +48,17 @@ void calibrate_sensor(){
     delay(100);
 
     for(int sensor = 0; sensor < SENSOR_COUNT; sensor++){
-        for(int read = 0; read < 3; read++){
+        for(int read = 0; read < SENSOR_CALIBRATION_READING_COUNT; read++){
             sensor_treshold[sensor] += analogReadRaw(sensors_pin[sensor]);
             delay(15);
         }
-        sensor_treshold[sensor] = sensor_treshold[sensor] / 6;
+        sensor_treshold[sensor] = sensor_treshold[sensor] / SENSOR_CALIBRATION_READING_COUNT; //average
+        sensor_treshold[sensor] = sensor_treshold[sensor] * SENSOR_TRESHOLD_RATIO; //offset
         Serial.println(sensor_treshold[sensor]);
     }
 
     delay(10);
     digitalWrite(sensor_led, LOW);
-    Serial.print("Calibration complete.");
+    Serial.println("Calibration complete.");
     status_led_blink(2);
 }
