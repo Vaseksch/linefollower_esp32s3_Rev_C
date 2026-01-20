@@ -2,5 +2,5 @@ struct log_packet{
     int sensor_value;
     int error;
     int correction;
-    ulong time;
+    unsigned long time;
 };
