@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include "../lib/motor.h"
-#include "../lib/board_config.h"
+#include "../include/modules/motors/motor.h"
+#include "../include/config/board_config.h"
 
 #define MOTOR_A_CHANNEL 2
 #define MOTOR_B_CHANNEL 3

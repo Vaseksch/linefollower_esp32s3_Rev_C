@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include <math.h>
 #include <TinyMPU6050.h>
-#include "../lib/board_config.h"
-#include "../lib/sensor.h"
-#include "../lib/motor.h"
-#include "../lib/logger.h"
-#include "../lib/constants.h"
+#include "../include/config/board_config.h"
+#include "../include/modules/sensors/sensor.h"
+#include "../include/modules/motors/motor.h"
+#include "../include/utils/logger/logger.h"
+#include "../include/config/constants.h"
 
 MPU6050 mpu(Wire);
 

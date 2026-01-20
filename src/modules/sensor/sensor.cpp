@@ -1,6 +1,6 @@
-#include "../lib/sensor.h"
-#include "../lib/board_config.h"
-#include "../lib/constants.h"
+#include "../include/modules/sensors/sensor.h"
+#include "../include/config/board_config.h"
+#include "../include/config/constants.h"
 #include <Arduino.h>
 #include <stdint.h>
 

@@ -1,4 +1,4 @@
-#include "../lib/board_config.h"
+#include "../include/config/board_config.h"
 #include <Arduino.h>
 
 
