@@ -4,6 +4,7 @@
 #include "../include/config/board_config.h"
 #include "../include/modules/sensors/sensor.h"
 #include "../include/modules/motors/motor.h"
+#include "../include/modules/controller/special_cases.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/config/constants.h"
 
@@ -65,22 +66,10 @@ void loop()
     motorB(MIN_SPEED);
     break;
   case LEFT_EDGE:
-    motor_brake(BRAKE_TIME_MILISECONDS);
-    while (sensor_values < LEFT_CENTER_TRESHOLD || sensor_values > RIGHT_CENTER_TRESHOLD)
-    {
-      motorA(CORNER_SPEED);
-      motorB(-CORNER_SPEED);
-      sensor_read(&sensor_values, &error);
-    }
+    left_90_corner(&sensor_values, &error);
     break;
   case RIGHT_EDGE:
-    motor_brake(BRAKE_TIME_MILISECONDS);
-    while (sensor_values < LEFT_CENTER_TRESHOLD || sensor_values > RIGHT_CENTER_TRESHOLD)
-    {
-      motorA(-CORNER_SPEED);
-      motorB(CORNER_SPEED);
-      sensor_read(&sensor_values, &error);
-    }
+    right_90_corner(&sensor_values, &error);
     break;
 
   default:
