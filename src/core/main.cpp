@@ -44,8 +44,9 @@ void setup()
   digitalWrite(sensor_led, HIGH);
   while (DEBUG_MODE)
   {
-    sensor_read(&sensor_values, &error);
-    Serial.println(sensor_values, BIN);
+    Serial.println(xPortGetCoreID());
+    //sensor_read(&sensor_values, &error);
+    //Serial.println(sensor_values, BIN);
   }
 }
 
