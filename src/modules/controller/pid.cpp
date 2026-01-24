@@ -2,7 +2,6 @@
 #include "../include/config/board_config.h"
 #include "../include/config/constants.h"
 #include "../include/modules/sensors/sensor.h"
-#include <stdint.h>
 #include <Arduino.h>
 
 unsigned long new_time = 0;
