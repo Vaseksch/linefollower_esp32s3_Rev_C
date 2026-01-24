@@ -5,24 +5,12 @@
 #include "../include/modules/sensors/sensor.h"
 #include "../include/modules/motors/motor.h"
 #include "../include/modules/controller/special_cases.h"
+#include "../include/modules/controller/pid.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/config/constants.h"
 
 MPU6050 mpu(Wire);
 
-double_t new_time = 0;
-double_t old_time = 0;
-double_t dt = 0;
-
-int32_t last_error = 0;
-float_t integral = 0;
-int16_t derivative = 0;
-
-int32_t correction;
-
-int32_t speed;
-int32_t motor_a_speed;
-int32_t motor_b_speed;
 
 uint16_t sensor_values = 0;
 int32_t error = 0;
@@ -53,17 +41,12 @@ void setup()
 
 void loop()
 {
-  new_time = millis();
-  dt = (new_time - old_time) / 1000;
-  old_time = new_time;
-
   sensor_read(&sensor_values, &error);
 
   switch (sensor_values)
   {
   case 0:
-    motorA(MIN_SPEED);
-    motorB(MIN_SPEED);
+    slow_straight();
     break;
   case LEFT_EDGE:
     left_90_corner(&sensor_values, &error);
@@ -73,20 +56,7 @@ void loop()
     break;
 
   default:
-    derivative = (error - last_error) / dt;
-
-    correction = (KP * error) + (KD * derivative);
-
-    last_error = error;
-
-    motor_a_speed = BASE_SPEED - correction;
-    motor_b_speed = BASE_SPEED + correction;
-
-    motor_a_speed = constrain(motor_a_speed, -MAX_SPEED, MAX_SPEED);
-    motor_b_speed = constrain(motor_b_speed, -MAX_SPEED, MAX_SPEED);
-
-    motorA(motor_a_speed);
-    motorB(motor_b_speed);
+    pid(&error);
     break;
   }
 }
