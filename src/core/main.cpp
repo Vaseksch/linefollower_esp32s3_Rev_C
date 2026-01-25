@@ -11,7 +11,6 @@
 
 MPU6050 mpu(Wire);
 
-
 uint16_t sensor_values = 0;
 int32_t error = 0;
 
