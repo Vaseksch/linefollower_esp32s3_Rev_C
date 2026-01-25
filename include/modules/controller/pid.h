@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 
-void get_delta();
-void pid(int32_t * error);
+void pid_control(int32_t * error);
 
 #endif

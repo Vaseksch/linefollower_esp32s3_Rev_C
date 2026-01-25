@@ -23,7 +23,7 @@ void right_90_corner(uint16_t * sensor_values, int * error){
     }
 }
 
-void slow_straight(){
+void forward_slow(){
   motorA(MIN_SPEED);
   motorB(MIN_SPEED);
 }

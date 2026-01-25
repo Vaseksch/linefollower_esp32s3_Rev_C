@@ -18,14 +18,11 @@ int32_t speed;
 int32_t motor_a_speed;
 int32_t motor_b_speed;
 
-void get_delta(){
+
+void pid_control(int32_t * error){
     new_time = millis();
     dt = (new_time - old_time) / 1000;
     old_time = new_time;
-}
-
-void pid(int32_t * error){
-    get_delta();
 
     derivative = (*error - last_error) / dt;
 

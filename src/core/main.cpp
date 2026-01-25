@@ -33,9 +33,8 @@ void setup()
   digitalWrite(sensor_led, HIGH);
   while (DEBUG_MODE)
   {
-    Serial.println(xPortGetCoreID());
-    //sensor_read(&sensor_values, &error);
-    //Serial.println(sensor_values, BIN);
+    sensor_read(&sensor_values, &error);
+    Serial.println(sensor_values, BIN);
   }
 }
 
@@ -46,17 +45,19 @@ void loop()
   switch (sensor_values)
   {
   case 0:
-    slow_straight();
+    forward_slow();
     break;
+
   case LEFT_EDGE:
     left_90_corner(&sensor_values, &error);
     break;
+
   case RIGHT_EDGE:
     right_90_corner(&sensor_values, &error);
     break;
 
   default:
-    pid(&error);
+    pid_control(&error);
     break;
   }
 }
