@@ -23,8 +23,7 @@ void setup()
   config_complete();
   calibrate_sensor();
   Wire.begin(esp_sda, esp_scl);
-  imu_init(false); // set ture only when IMU module connected to the robot
-  
+  imu_init();
 
   Serial.println("press button SW1 on ");
   while (!digitalRead(switch_1))
