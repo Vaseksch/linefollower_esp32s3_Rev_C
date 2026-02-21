@@ -4,13 +4,13 @@
 #include "../include/modules/sensors/sensor.h"
 #include <Arduino.h>
 
-unsigned long new_time = 0;
-unsigned long old_time = 0;
-unsigned long dt = 0;
+double_t new_time = 0;
+double_t old_time = 0;
+float_t dt = 0;
 
 int32_t last_error = 0;
 float_t integral = 0;
-int16_t derivative = 0;
+float_t derivative = 0;
 
 int32_t correction;
 
@@ -20,9 +20,10 @@ int32_t motor_b_speed;
 
 
 void pid_control(int32_t * error){
-    new_time = millis();
-    dt = (new_time - old_time) / 1000;
+    new_time = micros();
+    dt = (new_time - old_time) * 10e-6;
     old_time = new_time;
+    Serial.println(dt);
 
     derivative = (*error - last_error) / dt;
 
