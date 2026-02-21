@@ -1,5 +1,6 @@
 #include "../include/modules/sensors/sensor.h"
 #include "../include/modules/status_led/status_led.h"
+#include "../include/modules/display/display.h"
 #include "../include/config/board_config.h"
 #include "../include/config/constants.h"
 #include <Arduino.h>
@@ -42,9 +43,11 @@ void sensor_read(uint16_t *sensor_values, int *error){
 }
 
 void calibrate_sensor(){
+    press_sw2_screen();
     Serial.println("Calibration: place robot on white surface and press button SW1 on the board");
     while(!digitalRead(switch_1));
-
+    
+    wait_screen();
     digitalWrite(sensor_led, HIGH);
     delay(100);
 

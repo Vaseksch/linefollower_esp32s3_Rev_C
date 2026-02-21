@@ -7,6 +7,7 @@
 #include "../include/modules/controller/special_cases.h"
 #include "../include/modules/controller/pid.h"
 #include "../include/modules/imu/imu.h"
+#include "../include/modules/display/display.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/config/constants.h"
 
@@ -19,11 +20,13 @@ void setup()
   pin_setup();
   motor_init();
   adc_init();
+  Wire.begin(esp_sda, esp_scl);
+  oled_begin();
   Serial.begin(115200);
   config_complete();
   calibrate_sensor();
-  Wire.begin(esp_sda, esp_scl);
   imu_init();
+  calibration_complete_screen();
 
   Serial.println("press button SW1 on ");
   while (!digitalRead(switch_1))
