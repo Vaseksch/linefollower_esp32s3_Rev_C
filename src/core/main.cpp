@@ -6,10 +6,10 @@
 #include "../include/modules/motors/motor.h"
 #include "../include/modules/controller/special_cases.h"
 #include "../include/modules/controller/pid.h"
+#include "../include/modules/imu/imu.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/config/constants.h"
 
-MPU6050 mpu(Wire);
 
 uint16_t sensor_values = 0;
 int32_t error = 0;
@@ -20,11 +20,11 @@ void setup()
   motor_init();
   adc_init();
   Serial.begin(115200);
-
   config_complete();
   calibrate_sensor();
-
   Wire.begin(esp_sda, esp_scl);
+  imu_init(false);
+  
 
   Serial.println("press button SW1 on ");
   while (!digitalRead(switch_1))
@@ -33,7 +33,7 @@ void setup()
   while (DEBUG_MODE)
   {
     sensor_read(&sensor_values, &error);
-    Serial.println(sensor_values, BIN);
+    //Serial.println(sensor_values, BIN);
   }
 }
 
