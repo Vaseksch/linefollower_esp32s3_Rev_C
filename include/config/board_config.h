@@ -35,6 +35,5 @@ extern const int switch_2;
 void pin_setup();
 void config_complete();
 void adc_init();
-void status_led_blink(int blinks_total);
 
 #endif

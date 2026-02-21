@@ -1,4 +1,5 @@
 #include "../include/modules/sensors/sensor.h"
+#include "../include/modules/status_led/status_led.h"
 #include "../include/config/board_config.h"
 #include "../include/config/constants.h"
 #include <Arduino.h>

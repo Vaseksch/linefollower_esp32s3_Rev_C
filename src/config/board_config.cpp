@@ -1,4 +1,5 @@
 #include "../include/config/board_config.h"
+#include "../include/modules/status_led/status_led.h"
 #include <Arduino.h>
 
 
@@ -75,13 +76,4 @@ void adc_init()
 {
     analogReadResolution(8);
     analogSetAttenuation(ADC_0db);
-}
-
-void status_led_blink(int blinks_total){
-    for(int blink = 0; blink < blinks_total; blink++){
-        digitalWrite(status_led, HIGH);
-        delay(50);
-        digitalWrite(status_led, LOW);
-        delay(150);
-    }
 }
