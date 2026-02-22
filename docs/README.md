@@ -3,6 +3,8 @@
 This repository contains the hardware and software for a line-following robot based on the ESP32 platform.
 The project was developed iteratively, starting from very simple motor-control boards and gradually evolving into a complete robot designed for further experimentation and improvement.
 
+![IMG_9637-4](https://github.com/user-attachments/assets/bc300b56-2706-4b5e-9edc-961eee3da49d)
+
 ---
 
 ## Project Overview
@@ -26,6 +28,8 @@ These prototypes used the **L9110 motor driver** and served mainly for learning 
 Later, the project moved to a more complete design using the **L293D motor driver**, which made it possible to build the first fully functional robot.
 
 These early boards established the foundation for all later hardware and software revisions.
+
+
 
 ---
 
@@ -57,6 +61,8 @@ Additional features:
 - Status LED
 - Programmable buttons
 
+![IMG_9517-1](https://github.com/user-attachments/assets/89c1cecd-0679-49cb-b343-e45f74de675c)
+
 These versions were not complete robots, but they were crucial for early testing and experimentation.
 
 ---
@@ -77,6 +83,8 @@ Additional features:
 - Programmable buttons
 - MPU-6050 socket (functional)
 - Downforce fan (later abandoned after real-world testing)
+
+![IMG_9519-2](https://github.com/user-attachments/assets/329b43c2-fe2e-4674-83ad-9eba4dad4214)
 
 This version validated the overall robot architecture and control concept.
 
@@ -122,6 +130,8 @@ Additional features:
 - Connector for an external master power switch  
   (currently shorted, prepared for competition rules)
 
+![IMG_9626-3](https://github.com/user-attachments/assets/830fa12a-0e92-418a-9b65-99129699a304)
+
 Revision C is considered stable and serves as the final PCB platform.
 
 ---
@@ -133,6 +143,8 @@ Revision C is considered stable and serves as the final PCB platform.
 - Clear separation between sensor reading, control logic, and motor output
 
 The software is structured to allow easy tuning and future feature expansion.
+
+![IMG_9587-2](https://github.com/user-attachments/assets/c4036861-77d5-4bbb-8963-39c1b0f81dc4)
 
 ---
 
@@ -151,4 +163,5 @@ The software is structured to allow easy tuning and future feature expansion.
 - **Implementation of the MPU-6050**
   - Orientation and motion data
   - Possible use for improved control or diagnostics
+
 
