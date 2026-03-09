@@ -26,7 +26,6 @@ void pid_control(float_t * error){
     old_time = new_time;
 
     derivative = (*error - last_error) / dt;
-    Serial.println(derivative);
 
     correction = (KP * *error) + (KD * derivative);
 
