@@ -45,7 +45,6 @@ void setup()
 
 void loop()
 {
-  start_time = micros();
   sensor_read(&sensor_values, &error);
 
   switch (sensor_values)
@@ -66,5 +65,4 @@ void loop()
     pid_control(&error);
     break;
   }
-  Serial.println(micros() - start_time);
 }
