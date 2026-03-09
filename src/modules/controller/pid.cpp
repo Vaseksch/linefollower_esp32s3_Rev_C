@@ -9,11 +9,11 @@ double_t new_time = 0;
 double_t old_time = 0;
 float_t dt = 0;
 
-int32_t last_error = 0;
+float_t last_error = 0;
 float_t integral = 0;
 float_t derivative = 0;
 
-int32_t correction;
+float_t correction;
 
 int32_t speed;
 int32_t motor_a_speed;

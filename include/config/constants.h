@@ -17,9 +17,9 @@
 
 #define BRAKE_TIME_MILISECONDS 20
 
-#define KP 4
-#define KD 0.6
+#define KP 15
+#define KD 0.3
 
-#define LOGGING true
+#define LOGGING false
 #define SAMPLE_RATE_HZ 100
 #define MAX_SAMPLES 1000
