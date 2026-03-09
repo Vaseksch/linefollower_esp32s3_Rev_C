@@ -38,7 +38,7 @@ void sensor_read(uint16_t *sensor_values, float_t *error){
     for(uint_fast8_t sensor = 0; sensor < SENSOR_COUNT; sensor++){
         sensor_raw_value[sensor] = analogRead(sensors_pin[sensor]);
         
-        int sensor_filtered_value = sensor_treshold[sensor] - sensor_raw_value[sensor];
+        int sensor_filtered_value = sensor_treshold[sensor] - sensor_raw_value[sensor] - sensor_range[sensor] * SENSOR_TRESHOLD_OFFSET;
         //binary values
         if(sensor_filtered_value > 0){
             *sensor_values = *sensor_values | (1 << sensor);
