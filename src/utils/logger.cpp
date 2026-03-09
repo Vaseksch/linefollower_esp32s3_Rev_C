@@ -8,8 +8,8 @@ int sampling_interval = 1000000 / SAMPLE_RATE_HZ;
 int sample_count = 0;
 
 double_t log_inserted_at[MAX_SAMPLES];
-int32_t log_error[MAX_SAMPLES];
-int32_t log_correction[MAX_SAMPLES];
+float_t log_error[MAX_SAMPLES];
+float_t log_correction[MAX_SAMPLES];
 float_t log_derivative[MAX_SAMPLES];
 int32_t log_motor_a_speed[MAX_SAMPLES];
 int32_t log_motor_b_speed[MAX_SAMPLES];
