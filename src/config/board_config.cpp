@@ -1,7 +1,9 @@
 #include "../include/config/board_config.h"
 #include "../include/modules/status_led/status_led.h"
+#include "../include/utils/logger/logger.h"
 #include <Arduino.h>
 
+Logger logger;
 
 const int esp_sda = 1;
 const int esp_scl = 2;

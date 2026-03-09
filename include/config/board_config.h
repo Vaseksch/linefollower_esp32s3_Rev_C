@@ -1,5 +1,8 @@
+#include "../include/utils/logger/logger.h"
 #ifndef BOARD_CONFIG_H
 #define BOARD_CONFIG_H
+
+extern Logger logger;
 
 extern const int esp_sda;
 extern const int esp_scl;

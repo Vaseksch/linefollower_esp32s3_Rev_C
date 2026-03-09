@@ -76,3 +76,8 @@ void motor_brake(int miliseconds)
 
     delay(miliseconds);
 }
+
+void full_stop(){
+    motorA(0);
+    motorB(0);
+}

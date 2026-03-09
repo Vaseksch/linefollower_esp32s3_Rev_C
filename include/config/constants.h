@@ -19,3 +19,7 @@
 
 #define KP 14
 #define KD 1
+
+#define LOGGING true
+#define SAMPLE_RATE_HZ 100
+#define MAX_SAMPLES 3000

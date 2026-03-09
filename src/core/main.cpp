@@ -26,6 +26,9 @@ void setup()
   config_complete();
   calibrate_sensor();
   imu_init();
+  if(LOGGING){
+    logger.logger_init();
+  }
   calibration_complete_screen();
 
   Serial.println("press button SW1 on ");

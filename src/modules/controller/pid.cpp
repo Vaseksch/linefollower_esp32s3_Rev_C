@@ -2,6 +2,7 @@
 #include "../include/config/board_config.h"
 #include "../include/config/constants.h"
 #include "../include/modules/sensors/sensor.h"
+#include "../include/utils/logger/logger.h"
 #include <Arduino.h>
 
 double_t new_time = 0;
@@ -23,9 +24,9 @@ void pid_control(int32_t * error){
     new_time = micros();
     dt = (new_time - old_time) * 10e-6;
     old_time = new_time;
-    Serial.println(dt);
 
     derivative = (*error - last_error) / dt;
+    Serial.println(derivative);
 
     correction = (KP * *error) + (KD * derivative);
 
@@ -39,4 +40,8 @@ void pid_control(int32_t * error){
 
     motorA(motor_a_speed);
     motorB(motor_b_speed);
+
+    if(LOGGING){
+        logger.log_pid(&new_time, error, &correction, &derivative, &motor_a_speed, &motor_b_speed);
+    }
 }
