@@ -2,7 +2,7 @@
 #define CORNER_SPEED 45
 #define MIN_SPEED 30
 #define MAX_SPEED 100
-#define DEBUG_MODE false
+#define DEBUG_MODE true
 #define IMU_AVALIBLE false
 
 #define SENSOR_COUNT 11

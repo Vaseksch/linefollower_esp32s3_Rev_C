@@ -1,6 +1,7 @@
 #include "../include/modules/sensors/sensor.h"
 #include "../include/modules/status_led/status_led.h"
 #include "../include/modules/display/display.h"
+#include "../include/modules/motors/motor.h"
 #include "../include/config/board_config.h"
 #include "../include/config/constants.h"
 #include <Arduino.h>
@@ -22,6 +23,9 @@ const int sensors_pin[11] = {
 };
 const int sensor_position_weight[11] = {-16, -8, -4, -2, -1, 0, 1, 2, 4, 8, 16};
 int sensor_treshold[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int sensor_raw_value[11];
+int sensor_max_value[11];
+int sensor_min_value[11];
 
 
 void sensor_read(uint16_t *sensor_values, int *error){
@@ -30,7 +34,14 @@ void sensor_read(uint16_t *sensor_values, int *error){
     int32_t den = 0;
 
     for(uint_fast8_t sensor = 0; sensor < SENSOR_COUNT; sensor++){
-        int sensor_filtered_value = sensor_treshold[sensor] - analogReadRaw(sensors_pin[sensor]);
+        sensor_raw_value[sensor] = analogRead(sensors_pin[sensor]);
+        if(sensor < SENSOR_COUNT - 1){
+            Serial.print(sensor_raw_value[sensor]);
+            Serial.print(";");
+        }else{
+           Serial.println(sensor_raw_value[sensor]);
+        }
+        int sensor_filtered_value = sensor_treshold[sensor] - sensor_raw_value[sensor];
         if(sensor_filtered_value > 0){
             *sensor_values = *sensor_values | (1 << sensor);
             num += sensor_filtered_value * sensor_position_weight[sensor];
@@ -44,7 +55,7 @@ void sensor_read(uint16_t *sensor_values, int *error){
 
 void calibrate_sensor(){
     press_sw2_screen();
-    Serial.println("Calibration: place robot on white surface and press button SW1 on the board");
+    Serial.println("Calibration: place robot on the calibration pad and press button SW1 on the board");
     while(!digitalRead(switch_1));
     
     wait_screen();
@@ -53,11 +64,31 @@ void calibrate_sensor(){
 
     for(int sensor = 0; sensor < SENSOR_COUNT; sensor++){
         for(int read = 0; read < SENSOR_CALIBRATION_READING_COUNT; read++){
-            sensor_treshold[sensor] += analogReadRaw(sensors_pin[sensor]);
+            sensor_min_value[sensor] += analogRead(sensors_pin[sensor]);
             delay(15);
         }
-        sensor_treshold[sensor] = sensor_treshold[sensor] / SENSOR_CALIBRATION_READING_COUNT; //average
-        sensor_treshold[sensor] = sensor_treshold[sensor] * SENSOR_TRESHOLD_RATIO; //offset
+        sensor_min_value[sensor] = sensor_min_value[sensor] / SENSOR_CALIBRATION_READING_COUNT;
+    }
+
+    motorA(-15);
+    motorB(-15);
+    delay(500);
+    full_stop();
+
+    for(int sensor = 0; sensor < SENSOR_COUNT; sensor++){
+        for(int read = 0; read < SENSOR_CALIBRATION_READING_COUNT; read++){
+            sensor_max_value[sensor] += analogRead(sensors_pin[sensor]);
+            delay(15);
+        }
+        sensor_max_value[sensor] = sensor_max_value[sensor] / SENSOR_CALIBRATION_READING_COUNT;
+        sensor_treshold[sensor] = (sensor_max_value[sensor] - sensor_min_value[sensor]) / 2;
+        Serial.print("sensor: ");
+        Serial.print(sensor);
+        Serial.print(" | min: ");
+        Serial.print(sensor_min_value[sensor]);
+        Serial.print(" | max: ");
+        Serial.print(sensor_max_value[sensor]);
+        Serial.print(" | treshold: ");
         Serial.println(sensor_treshold[sensor]);
     }
 
