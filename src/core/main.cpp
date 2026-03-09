@@ -13,7 +13,8 @@
 
 
 uint16_t sensor_values = 0;
-int32_t error = 0;
+float_t error = 0;
+double_t start_time;
 
 void setup()
 {
@@ -38,12 +39,13 @@ void setup()
   while (DEBUG_MODE)
   {
     sensor_read(&sensor_values, &error);
-    Serial.println(sensor_values, BIN);
+    //Serial.println(sensor_values, BIN);
   }
 }
 
 void loop()
 {
+  start_time = micros();
   sensor_read(&sensor_values, &error);
 
   switch (sensor_values)
@@ -64,4 +66,5 @@ void loop()
     pid_control(&error);
     break;
   }
+  Serial.println(micros() - start_time);
 }

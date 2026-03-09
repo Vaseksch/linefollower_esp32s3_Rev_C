@@ -20,7 +20,7 @@ int32_t motor_a_speed;
 int32_t motor_b_speed;
 
 
-void pid_control(int32_t * error){
+void pid_control(float_t * error){
     new_time = micros();
     dt = (new_time - old_time) * 10e-6;
     old_time = new_time;

@@ -58,7 +58,7 @@ void Logger::stream_data()
 
 void Logger::log_pid(
     double_t *new_log_inserted_at,
-    int32_t *new_error,
+    float_t *new_error,
     int32_t *new_log_correction,
     float_t *new_log_derivative,
     int32_t *new_log_motor_a_speed,

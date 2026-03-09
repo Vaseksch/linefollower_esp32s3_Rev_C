@@ -3,7 +3,7 @@
 #include "../include/config/constants.h"
 #include "../include/modules/sensors/sensor.h"
 
-void left_90_corner(uint16_t * sensor_values, int * error){
+void left_90_corner(uint16_t * sensor_values, float_t * error){
     motor_brake(BRAKE_TIME_MILISECONDS);
     while (*sensor_values < LEFT_CENTER_TRESHOLD || *sensor_values > RIGHT_CENTER_TRESHOLD)
     {
@@ -13,7 +13,7 @@ void left_90_corner(uint16_t * sensor_values, int * error){
     }
 }
 
-void right_90_corner(uint16_t * sensor_values, int * error){
+void right_90_corner(uint16_t * sensor_values, float_t * error){
     motor_brake(BRAKE_TIME_MILISECONDS);
     while (*sensor_values < LEFT_CENTER_TRESHOLD || *sensor_values > RIGHT_CENTER_TRESHOLD)
     {

@@ -26,31 +26,35 @@ int sensor_treshold[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int sensor_raw_value[11];
 int sensor_max_value[11];
 int sensor_min_value[11];
+int sensor_range[11];
+float_t sensor_normalized_value[11];
 
 
-void sensor_read(uint16_t *sensor_values, int *error){
+void sensor_read(uint16_t *sensor_values, float_t *error){
     *sensor_values = 0;
-    int32_t num = 0;
-    int32_t den = 0;
+    float_t num = 0;
+    float_t den = 0;
 
     for(uint_fast8_t sensor = 0; sensor < SENSOR_COUNT; sensor++){
         sensor_raw_value[sensor] = analogRead(sensors_pin[sensor]);
-        if(sensor < SENSOR_COUNT - 1){
-            Serial.print(sensor_raw_value[sensor]);
-            Serial.print(";");
-        }else{
-           Serial.println(sensor_raw_value[sensor]);
-        }
+        
         int sensor_filtered_value = sensor_treshold[sensor] - sensor_raw_value[sensor];
+        //binary values
         if(sensor_filtered_value > 0){
             *sensor_values = *sensor_values | (1 << sensor);
-            num += sensor_filtered_value * sensor_position_weight[sensor];
-            den += sensor_filtered_value;
         }
+
+        //analog values
+        sensor_normalized_value[sensor] = (float)(sensor_raw_value[sensor] - sensor_min_value[sensor])/(float)sensor_range[sensor];
+        sensor_normalized_value[sensor] = 1.0f - constrain(sensor_normalized_value[sensor], 0.0f, 1.0f);
+
+        num += sensor_normalized_value[sensor] * sensor_position_weight[sensor];
+        den += sensor_normalized_value[sensor];
     }
     if(den > 0){
         *error = num / den;
     }
+    
 }
 
 void calibrate_sensor(){
@@ -81,7 +85,9 @@ void calibrate_sensor(){
             delay(15);
         }
         sensor_max_value[sensor] = sensor_max_value[sensor] / SENSOR_CALIBRATION_READING_COUNT;
-        sensor_treshold[sensor] = (sensor_max_value[sensor] - sensor_min_value[sensor]) / 2;
+        sensor_range[sensor] = sensor_max_value[sensor] - sensor_min_value[sensor];
+        sensor_treshold[sensor] = sensor_range[sensor] / 2;
+
         Serial.print("sensor: ");
         Serial.print(sensor);
         Serial.print(" | min: ");
