@@ -13,7 +13,8 @@
 
 
 uint16_t sensor_values = 0;
-int32_t error = 0;
+float_t error = 0;
+double_t start_time;
 
 void setup()
 {

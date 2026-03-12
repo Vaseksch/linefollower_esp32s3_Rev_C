@@ -9,28 +9,30 @@ double_t new_time = 0;
 double_t old_time = 0;
 float_t dt = 0;
 
-int32_t last_error = 0;
+float_t last_error = 0;
 float_t integral = 0;
 float_t derivative = 0;
+float_t last_derivative = 0;
 
-int32_t correction;
+float_t correction;
 
-int32_t speed;
+float_t speed;
 int32_t motor_a_speed;
 int32_t motor_b_speed;
 
 
-void pid_control(int32_t * error){
+void pid_control(float_t * error){
     new_time = micros();
     dt = (new_time - old_time) * 10e-6;
     old_time = new_time;
 
     derivative = (*error - last_error) / dt;
-    Serial.println(derivative);
+    derivative = (1.0f - DERIVATIVE_FILTER_RATIO) * derivative + DERIVATIVE_FILTER_RATIO * last_derivative;
 
     correction = (KP * *error) + (KD * derivative);
 
     last_error = *error;
+    last_derivative = derivative;
 
     motor_a_speed = BASE_SPEED - correction;
     motor_b_speed = BASE_SPEED + correction;

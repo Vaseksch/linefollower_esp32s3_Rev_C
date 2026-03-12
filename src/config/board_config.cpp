@@ -76,6 +76,6 @@ void config_complete(){
 
 void adc_init()
 {
-    analogReadResolution(8);
+    analogReadResolution(10);
     analogSetAttenuation(ADC_0db);
 }

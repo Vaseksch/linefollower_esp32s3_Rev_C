@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void pid_control(int32_t * error);
+void pid_control(float_t * error);
 
 #endif

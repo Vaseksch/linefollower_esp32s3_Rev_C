@@ -8,8 +8,8 @@ int sampling_interval = 1000000 / SAMPLE_RATE_HZ;
 int sample_count = 0;
 
 double_t log_inserted_at[MAX_SAMPLES];
-int32_t log_error[MAX_SAMPLES];
-int32_t log_correction[MAX_SAMPLES];
+float_t log_error[MAX_SAMPLES];
+float_t log_correction[MAX_SAMPLES];
 float_t log_derivative[MAX_SAMPLES];
 int32_t log_motor_a_speed[MAX_SAMPLES];
 int32_t log_motor_b_speed[MAX_SAMPLES];
@@ -37,6 +37,7 @@ void Logger::log_flag(char32_t *new_flag)
 
 void Logger::stream_data()
 {
+    Serial.println("data_start");
     for (int sample = 0; sample < MAX_SAMPLES; sample++)
     {
         Serial.print(log_inserted_at[sample]);
@@ -53,13 +54,14 @@ void Logger::stream_data()
         Serial.print(";");
         Serial.println(flag[sample]);
     }
+    Serial.println("data_end");
     sample_count = 0;
 }
 
 void Logger::log_pid(
     double_t *new_log_inserted_at,
-    int32_t *new_error,
-    int32_t *new_log_correction,
+    float_t *new_error,
+    float_t *new_log_correction,
     float_t *new_log_derivative,
     int32_t *new_log_motor_a_speed,
     int32_t *new_log_motor_b_speed
