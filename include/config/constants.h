@@ -21,6 +21,6 @@
 #define KP 25
 #define KD 0.8
 
-#define LOGGING false
+#define LOGGING true
 #define SAMPLE_RATE_HZ 100
 #define MAX_SAMPLES 500

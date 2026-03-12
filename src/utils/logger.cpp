@@ -37,6 +37,7 @@ void Logger::log_flag(char32_t *new_flag)
 
 void Logger::stream_data()
 {
+    Serial.println("data_start");
     for (int sample = 0; sample < MAX_SAMPLES; sample++)
     {
         Serial.print(log_inserted_at[sample]);
@@ -53,6 +54,7 @@ void Logger::stream_data()
         Serial.print(";");
         Serial.println(flag[sample]);
     }
+    Serial.println("data_end");
     sample_count = 0;
 }
 
