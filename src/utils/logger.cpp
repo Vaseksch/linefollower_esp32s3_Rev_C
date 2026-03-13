@@ -84,6 +84,10 @@ void Logger::log_pid(
     {
         full_stop();
         Serial.println("logger full, press SW3 to stream data");
+        Serial.end();
+        delay(100);
+        Serial.begin(115200);
+        delay(100);
         while (!digitalRead(switch_2))
             ;
         stream_data();
