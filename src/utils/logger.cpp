@@ -69,16 +69,15 @@ void Logger::log_pid(
 {
     if (sample_count < MAX_SAMPLES)
     {
-        if ((*new_log_inserted_at - log_inserted_at[sample_count - 1]) > sampling_interval)
-        {
-            log_inserted_at[sample_count] = *new_log_inserted_at;
-            log_error[sample_count] = *new_error;
-            log_correction[sample_count] = *new_log_correction;
-            log_derivative[sample_count] = *new_log_derivative;
-            log_motor_a_speed[sample_count] = *new_log_motor_a_speed;
-            log_motor_b_speed[sample_count] = *new_log_motor_b_speed;
-            sample_count++;
-        }
+        
+        log_inserted_at[sample_count] = *new_log_inserted_at;
+        log_error[sample_count] = *new_error;
+        log_correction[sample_count] = *new_log_correction;
+        log_derivative[sample_count] = *new_log_derivative;
+        log_motor_a_speed[sample_count] = *new_log_motor_a_speed;
+        log_motor_b_speed[sample_count] = *new_log_motor_b_speed;
+        sample_count++;
+        
     }
     else
     {
