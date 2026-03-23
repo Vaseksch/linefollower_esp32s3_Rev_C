@@ -34,7 +34,7 @@ void setup()
   Serial.println("press button SW1 on ");
   wait_for_button(switch_1);
   digitalWrite(sensor_led, HIGH);
-  
+
   while (DEBUG_MODE)
   {
     sensor_read(&sensor_values, &error);
@@ -48,7 +48,7 @@ void loop()
 
   switch (sensor_values)
   {
-  case 0:
+  case NO_LINE:
     forward_slow();
     break;
 
