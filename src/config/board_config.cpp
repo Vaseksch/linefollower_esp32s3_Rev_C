@@ -90,17 +90,20 @@ void hardware_init()
     pin_setup();
     motor_init();
     adc_init();
+    Serial.println("Board init complete.");
 }
 
 void comms_init()
 {
-    Wire.begin(esp_sda, esp_scl);
     Serial.begin(115200);
     delay(500);
+    Wire.begin(esp_sda, esp_scl);
+    Serial.println("Comms started.");
 }
 
 void peripherals_init()
 {
     oled_begin();
     imu_init();
+    Serial.println("Peripherals init complete.");
 }
