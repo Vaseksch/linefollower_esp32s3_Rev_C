@@ -2,6 +2,7 @@
 #include "../include/modules/motors/motor.h"
 #include "../include/config/board_config.h"
 #include "../include/utils/logger/logger.h"
+#include "../include/modules/board/buttons.h"
 #include <Arduino.h>
 
 int sampling_interval = 1000000 / SAMPLE_RATE_HZ;
@@ -87,11 +88,9 @@ void Logger::log_pid(
         delay(100);
         Serial.begin(115200);
         delay(100);
-        while (!digitalRead(switch_2))
-            ;
+        wait_for_button(switch_2);
         stream_data();
         Serial.println("press SW3 to continue");
-        while (!digitalRead(switch_2))
-            ;
+        wait_for_button(switch_2);
     }
 }

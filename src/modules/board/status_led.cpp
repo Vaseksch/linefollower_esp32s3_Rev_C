@@ -1,4 +1,4 @@
-#include "../../../include/modules/status_led/status_led.h"
+#include "../../../include/modules/board/status_led.h"
 #include "../../../include/config/board_config.h"
 #include <Arduino.h>
 

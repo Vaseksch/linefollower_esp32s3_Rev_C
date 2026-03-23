@@ -8,6 +8,7 @@
 #include "../include/modules/controller/pid.h"
 #include "../include/modules/imu/imu.h"
 #include "../include/modules/display/display.h"
+#include "../include/modules/board/buttons.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/config/constants.h"
 
@@ -18,24 +19,22 @@ double_t start_time;
 
 void setup()
 {
-  pin_setup();
-  motor_init();
-  adc_init();
-  Wire.begin(esp_sda, esp_scl);
-  oled_begin();
-  Serial.begin(115200);
-  config_complete();
-  calibrate_sensor();
-  imu_init();
+  comms_init();
+  hardware_init();
+  peripherals_init();
+  init_complete();
+
   if(LOGGING){
     logger.logger_init();
   }
+
+  calibrate_sensor();
   calibration_complete_screen();
 
   Serial.println("press button SW1 on ");
-  while (!digitalRead(switch_1))
-    ;
+  wait_for_button(switch_1);
   digitalWrite(sensor_led, HIGH);
+  
   while (DEBUG_MODE)
   {
     sensor_read(&sensor_values, &error);

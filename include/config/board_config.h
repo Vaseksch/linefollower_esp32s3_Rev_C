@@ -36,7 +36,10 @@ extern const int switch_1;
 extern const int switch_2;
 
 void pin_setup();
-void config_complete();
+void init_complete();
 void adc_init();
+void hardware_init();
+void comms_init();
+void peripherals_init();
 
 #endif

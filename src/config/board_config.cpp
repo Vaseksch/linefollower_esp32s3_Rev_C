@@ -1,7 +1,11 @@
 #include "../include/config/board_config.h"
-#include "../include/modules/status_led/status_led.h"
+#include "../include/modules/board/status_led.h"
+#include "../include/modules/motors/motor.h"
 #include "../include/utils/logger/logger.h"
+#include "../include/modules/display/display.h"
+#include "../include/modules/imu/imu.h"
 #include <Arduino.h>
+#include <Wire.h>
 
 Logger logger;
 
@@ -30,14 +34,14 @@ const int motor_b_1 = 39;
 const int motor_b_2 = 38;
 const int motor_b_pwm = 4;
 
-
 const int sensor_led = 47;
 const int status_led = 5;
 
 const int switch_1 = 40;
 const int switch_2 = 41;
 
-void pin_setup(){
+void pin_setup()
+{
     pinMode(motor_standby, OUTPUT);
     pinMode(motor_a_1, OUTPUT);
     pinMode(motor_a_2, OUTPUT);
@@ -68,7 +72,8 @@ void pin_setup(){
     digitalWrite(motor_standby, HIGH);
 }
 
-void config_complete(){
+void init_complete()
+{
     status_led_blink(3);
     delay(1000);
     Serial.println("Configuration complete");
@@ -78,4 +83,24 @@ void adc_init()
 {
     analogReadResolution(10);
     analogSetAttenuation(ADC_0db);
+}
+
+void hardware_init()
+{
+    pin_setup();
+    motor_init();
+    adc_init();
+}
+
+void comms_init()
+{
+    Wire.begin(esp_sda, esp_scl);
+    Serial.begin(115200);
+    delay(500);
+}
+
+void peripherals_init()
+{
+    oled_begin();
+    imu_init();
 }
