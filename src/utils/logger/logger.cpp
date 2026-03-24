@@ -18,17 +18,22 @@ char32_t flag[MAX_SAMPLES];
 
 void Logger::logger_init()
 {
-    for (int sample = 0; sample < MAX_SAMPLES; sample++)
+    if (LOGGING)
     {
-        log_inserted_at[sample] = 0;
-        log_error[sample] = 0;
-        log_correction[sample] = 0;
-        log_motor_a_speed[sample] = 0;
-        log_motor_b_speed[sample] = 0;
-        flag[sample] = ' ';
+        for (int sample = 0; sample < MAX_SAMPLES; sample++)
+        {
+            log_inserted_at[sample] = 0;
+            log_error[sample] = 0;
+            log_correction[sample] = 0;
+            log_motor_a_speed[sample] = 0;
+            log_motor_b_speed[sample] = 0;
+            flag[sample] = ' ';
+        }
+        sample_count = 0;
+        Serial.println("logger init complete");
+    }else{
+       Serial.println("Logger not avalible."); 
     }
-    sample_count = 0;
-    Serial.println("logger init complete");
 }
 
 void Logger::log_flag(char32_t *new_flag)
@@ -65,12 +70,11 @@ void Logger::log_pid(
     float_t *new_log_correction,
     float_t *new_log_derivative,
     int32_t *new_log_motor_a_speed,
-    int32_t *new_log_motor_b_speed
-    )
+    int32_t *new_log_motor_b_speed)
 {
     if (sample_count < MAX_SAMPLES)
     {
-        
+
         log_inserted_at[sample_count] = *new_log_inserted_at;
         log_error[sample_count] = *new_error;
         log_correction[sample_count] = *new_log_correction;
@@ -78,7 +82,6 @@ void Logger::log_pid(
         log_motor_a_speed[sample_count] = *new_log_motor_a_speed;
         log_motor_b_speed[sample_count] = *new_log_motor_b_speed;
         sample_count++;
-        
     }
     else
     {

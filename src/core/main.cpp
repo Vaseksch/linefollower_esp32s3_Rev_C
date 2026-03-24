@@ -15,19 +15,15 @@
 
 uint16_t sensor_values = 0;
 float_t error = 0;
-double_t start_time;
 
 void setup()
 {
   comms_init();
   hardware_init();
   peripherals_init();
+  logger.logger_init();
   init_complete();
-
-  if(LOGGING){
-    logger.logger_init();
-  }
-
+  
   calibrate_sensors();
 
   Serial.println("Press button SW1 to start. ");
