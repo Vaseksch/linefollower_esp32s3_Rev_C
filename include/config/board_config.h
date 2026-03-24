@@ -41,5 +41,6 @@ void adc_init();
 void hardware_init();
 void comms_init();
 void peripherals_init();
+void calibrate_sensors();
 
 #endif

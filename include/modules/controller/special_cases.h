@@ -9,6 +9,6 @@
 
 void left_90_corner(uint16_t * sensor_values, float_t * error);
 void right_90_corner(uint16_t * sensor_values, float_t * error);
-void forward_slow();
+void no_line();
 
 #endif

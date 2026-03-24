@@ -3,6 +3,7 @@
 #include "../include/modules/motors/motor.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/modules/display/display.h"
+#include "../include/modules/sensors/sensor.h"
 #include "../include/modules/imu/imu.h"
 #include <Arduino.h>
 #include <Wire.h>
@@ -75,7 +76,7 @@ void pin_setup()
 void init_complete()
 {
     status_led_blink(3);
-    delay(1000);
+    delay(200);
     Serial.println("Configuration complete");
 }
 
@@ -106,4 +107,13 @@ void peripherals_init()
     oled_begin();
     imu_init();
     Serial.println("Peripherals init complete.");
+}
+
+void calibrate_sensors(){
+    calibrate_sensor_module();
+    if(imu_avalible){
+        calibrate_imu();
+    }
+    calibration_complete_screen();
+    status_led_blink(2);
 }

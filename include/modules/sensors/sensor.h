@@ -4,6 +4,6 @@
 #include <math.h>
 
 void sensor_read(uint16_t *, float_t *);
-void calibrate_sensor();
+void calibrate_sensor_module();
 
 #endif

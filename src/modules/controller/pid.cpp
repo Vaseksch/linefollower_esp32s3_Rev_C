@@ -2,6 +2,7 @@
 #include "../include/config/board_config.h"
 #include "../include/config/constants.h"
 #include "../include/modules/sensors/sensor.h"
+#include "../include/modules/imu/imu.h"
 #include "../include/utils/logger/logger.h"
 #include <Arduino.h>
 

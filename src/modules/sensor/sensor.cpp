@@ -58,7 +58,7 @@ void sensor_read(uint16_t *sensor_values, float_t *error){
     
 }
 
-void calibrate_sensor(){
+void calibrate_sensor_module(){
     press_sw2_screen();
     Serial.println("Calibration: place robot on the calibration pad and press button SW1 on the board");
     wait_for_button(switch_1);
@@ -102,5 +102,4 @@ void calibrate_sensor(){
     delay(10);
     digitalWrite(sensor_led, LOW);
     Serial.println("Calibration complete.");
-    status_led_blink(2);
 }

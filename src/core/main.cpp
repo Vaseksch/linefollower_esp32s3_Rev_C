@@ -28,10 +28,9 @@ void setup()
     logger.logger_init();
   }
 
-  calibrate_sensor();
-  calibration_complete_screen();
+  calibrate_sensors();
 
-  Serial.println("press button SW1 on ");
+  Serial.println("Press button SW1 to start. ");
   wait_for_button(switch_1);
   digitalWrite(sensor_led, HIGH);
 
@@ -49,7 +48,7 @@ void loop()
   switch (sensor_values)
   {
   case NO_LINE:
-    forward_slow();
+    no_line();
     break;
 
   case LEFT_EDGE:
