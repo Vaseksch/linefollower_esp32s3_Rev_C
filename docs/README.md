@@ -150,18 +150,16 @@ The software is structured to allow easy tuning and future feature expansion.
 
 ## Current Goal
 
-- **Tune the PD control algorithm as much as possible**
-  - Improve stability in turns
-  - Reduce oscillations
-  - Achieve consistent behavior on different surfaces
+- **Design new wheels.**
+  - Improve tires
+  - Need more grip
 
 ---
 
 ## Long-Term Goals
 
 - **Wireless communication using ESP-NOW**
-- **Implementation of the MPU-6050**
-  - Orientation and motion data
-  - Possible use for improved control or diagnostics
+- **Implementation of ToF sensor**
+  - for obstacle avoidance
 
 
