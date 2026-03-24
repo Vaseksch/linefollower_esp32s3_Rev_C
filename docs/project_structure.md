@@ -9,6 +9,9 @@ linefollower_esp32s3_V2.0
 │  │  ├─ board_config.h
 │  │  └─ constants.h
 │  ├─ modules
+│  │  ├─ board
+│  │  │  ├─ buttons.h
+│  │  │  └─ status_led.h
 │  │  ├─ controller
 │  │  │  ├─ pid.h
 │  │  │  └─ special_cases.h
@@ -18,11 +21,11 @@ linefollower_esp32s3_V2.0
 │  │  │  └─ imu.h
 │  │  ├─ motors
 │  │  │  └─ motor.h
-│  │  ├─ sensors
-│  │  │  └─ sensor.h
-│  │  └─ status_led
-│  │     └─ status_led.h
+│  │  └─ sensors
+│  │     └─ sensor.h
 │  └─ utils
+│     ├─ i2c_manager
+│     │  └─ i2c_manager.h
 │     └─ logger
 │        └─ logger.h
 ├─ platformio.ini
@@ -32,6 +35,9 @@ linefollower_esp32s3_V2.0
    ├─ core
    │  └─ main.cpp
    ├─ modules
+   │  ├─ board
+   │  │  ├─ buttons.cpp
+   │  │  └─ status_led.cpp
    │  ├─ controller
    │  │  ├─ pid.cpp
    │  │  └─ special_cases.cpp
@@ -41,11 +47,12 @@ linefollower_esp32s3_V2.0
    │  │  └─ imu.cpp
    │  ├─ motors
    │  │  └─ motors.cpp
-   │  ├─ sensor
-   │  │  └─ sensor.cpp
-   │  └─ status_led
-   │     └─ status_led.cpp
+   │  └─ sensor
+   │     └─ sensor.cpp
    └─ utils
-      └─ logger.cpp
+      ├─ i2c_manager
+      │  └─ i2c_manager.cpp
+      └─ logger
+         └─ logger.cpp
 
 ```
