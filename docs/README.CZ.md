@@ -161,5 +161,6 @@ Software je strukturován tak, aby umožňoval snadné ladění a další rozši
 
 ## Dlouhodobé cíle
 
-- **Bezdrátová komunikace pomocí ESP-NOW**  
-- **Implementace MPU-6050**   
+- **Bezdrátová komunikace pomocí ESP-NOW**
+- **Implementace ToF senzoru**
+  - pro detekci překážek a jejich vyhýbání   
