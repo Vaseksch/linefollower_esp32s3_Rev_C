@@ -1,6 +1,10 @@
+[![en](https://img.shields.io/badge/language-english-red.svg)](https://github.com/Vaseksch/linefollower_esp32s3_Rev_C/blob/master/docs/README.md)
+[![cz](https://img.shields.io/badge/jazyk-česky-blue.svg)](https://github.com/Vaseksch/linefollower_esp32s3_Rev_C/blob/master/docs/README.CZ.md)
+
+
 # Line Follower Robot
 
-This repository contains the hardware and software for a line-following robot based on the ESP32 platform.
+This repository contains the software for a line-following robot based on the ESP32 platform.
 The project was developed iteratively, starting from very simple motor-control boards and gradually evolving into a complete robot designed for further experimentation and improvement.
 
 ![IMG_9637-4](https://github.com/user-attachments/assets/bc300b56-2706-4b5e-9edc-961eee3da49d)
@@ -9,7 +13,7 @@ The project was developed iteratively, starting from very simple motor-control b
 
 ## Project Overview
 
-- **Microcontroller:** ESP32-S3-WROOM-1
+- **Microcontroller:** ESP32-S3-WROOM-1-N8
 - **Motors:** DC motors (up to 12 V)
 - **Motor Driver:** TB6612FNG
 - **Sensors:** QRD1114 reflective IR sensors
@@ -52,7 +56,7 @@ Purpose:
 - Test basic power distribution and I/O
 
 Specifications:
-- **MCU:** ESP32-S3-WROOM-1
+- **MCU:** ESP32-S3-WROOM-1-N8
 - **Motor driver:** L9110
 - **Motors:** Random DC motors (3–6 V)
 - **Sensors:** Not implemented
@@ -73,7 +77,7 @@ V1.0 was the **first fully functional line-following robot**.
 All later revisions are conceptually based on this version.
 
 Specifications:
-- **MCU:** ESP32-S3-WROOM-1
+- **MCU:** ESP32-S3-WROOM-1-N8
 - **Motor driver:** L293D
 - **Motors:** N20, 1000 RPM, 6 V
 - **Sensors:** QRD1114 (9×)
@@ -95,7 +99,7 @@ This version validated the overall robot architecture and control concept.
 Revision B was a design-only iteration that was never manufactured.
 
 Planned specifications:
-- **MCU:** ESP32-S3-WROOM-1
+- **MCU:** ESP32-S3-WROOM-1-N8
 - **Motor driver:** L293D
 - **Motors:** N20, 2000 RPM, 6 V
 - **Sensors:** QRD1114 (9×)
