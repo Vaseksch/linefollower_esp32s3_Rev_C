@@ -39,7 +39,7 @@ Tyto rané verze vytvořily základ pro všechny další hardwarové i softwarov
 Projekt prošel několika hardwarovými verzemi.  
 Dnes používá pouze **Revision C**, zatímco starší verze sloužily především jako vývojové kroky.
 
-Ve všech verzích byly konzistentně používány **reflexní IR senzory QRD1114**, což umožnilo snadné porovnávání jednotlivých revizí a zaměření se na návrh a software místo změny komponent.
+Ve všech verzích byly použity **reflexní IR senzory QRD1114**.
 
 ---
 
@@ -63,14 +63,14 @@ Raně prototypové desky zaměřené čistě na řízení motorů.
 
 ![IMG_9517-1](https://github.com/user-attachments/assets/89c1cecd-0679-49cb-b343-e45f74de675c)
 
-Tyto verze ještě nepředstavovaly kompletní robot, ale byly klíčové pro první testování.
+Tyto desky ještě nepředstavovaly funkčního robota, ale byly klíčové pro získání potřebných zkušeností.
 
 ---
 
 ### V1.0 (první funkční robot)
 
 V1.0 byl **první plně funkční line follower robot**.  
-Na této verzi koncepčně vycházejí všechny další revize.
+Z této verze koncepčně vycházejí všechny další revize.
 
 **Specifikace:**
 - **MCU:** ESP32-S3-WROOM-1-N8  
@@ -86,13 +86,13 @@ Na této verzi koncepčně vycházejí všechny další revize.
 
 ![IMG_9519-2](https://github.com/user-attachments/assets/329b43c2-fe2e-4674-83ad-9eba4dad4214)
 
-Tato verze ověřila celkovou architekturu robota i princip řízení.
+Tato verze zformovala celkovou architekturu robota i princip řízení pro budoucí verze.
 
 ---
 
 ### Revision B (pouze návrh)
 
-Revision B byla pouze návrhová iterace, která nebyla vyrobena.
+Revision B byla pouze návrhová iterace, která nebyla nikdy vyrobena.
 
 **Plánované specifikace:**
 - **MCU:** ESP32-S3-WROOM-1-N8  
@@ -107,16 +107,16 @@ Revision B byla pouze návrhová iterace, která nebyla vyrobena.
 - Patice pro I2C OLED displej  
 - Konektor pro externí hlavní vypínač   
 
-Tato revize byla zrušena, protože nepřinášela dostatečný přínos vzhledem ke své složitosti.
+Tato revize nebyla nikdy vyrobena, protože nepřinášela dostatečný přínos vzhledem ke své složitosti.
 
 ---
 
 ### Revision C (aktuální verze)
 
-Revision C je současně používaná hardwarová verze.
+Revision C je současná verze robota.
 
 **Specifikace:**
-- **MCU:** ESP32-S3-WROOM-1  
+- **MCU:** ESP32-S3-WROOM-1-N8   
 - **Driver:** TB6612FNG  
 - **Motory:** N20, 3000 RPM, 6–12 V  
 - **Senzory:** QRD1114 (11×)  
@@ -127,24 +127,24 @@ Revision C je současně používaná hardwarová verze.
 - Patice pro MPU-6050  
 - Patice pro I2C OLED displej  
 - Konektor pro externí hlavní vypínač  
-  (zkratovaný, připravený pro soutěžní pravidla)  
+  (nyní zkratovaný, připrava pro soutěžní pravidla)  
 
 ![IMG_9626-3](https://github.com/user-attachments/assets/830fa12a-0e92-418a-9b65-99129699a304)
 
-Revision C je považována za stabilní a slouží jako finální platforma PCB.
+Revision C je považována za dostatečně spolehlivou pro účast na soutěžích.
 
 ---
 
 ## Software
 
-- Napsán v Arduino-style C++ pro ESP32  
-- Využívá **PD regulační algoritmus** pro sledování čáry  
+- Napsán v Arduino-framework C++ pro ESP32  
+- Využívá **PD regulátor** pro sledování čáry  
 - Jasné oddělení:
   - čtení senzorů  
   - řídicí logiky  
   - výstupu na motory  
 
-Software je navržen tak, aby umožňoval snadné ladění a další rozšiřování.
+Software je strukturován tak, aby umožňoval snadné ladění a další rozšiřování.
 
 ![IMG_9587-2](https://github.com/user-attachments/assets/c4036861-77d5-4bbb-8963-39c1b0f81dc4)
 
@@ -152,7 +152,7 @@ Software je navržen tak, aby umožňoval snadné ladění a další rozšiřov�
 
 ## Aktuální cíle
 
-- **Maximální doladění PD regulátoru**
+- **"Perfektní" odladění PD regulátoru**
   - zlepšení stability v zatáčkách  
   - snížení kmitání  
   - konzistentní chování na různých površích  
@@ -162,6 +162,4 @@ Software je navržen tak, aby umožňoval snadné ladění a další rozšiřov�
 ## Dlouhodobé cíle
 
 - **Bezdrátová komunikace pomocí ESP-NOW**  
-- **Implementace MPU-6050**
-  - orientace a pohybová data  
-  - možné využití pro lepší řízení nebo diagnostiku  
+- **Implementace MPU-6050**   
