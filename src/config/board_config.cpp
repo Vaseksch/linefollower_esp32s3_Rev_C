@@ -4,11 +4,13 @@
 #include "../include/utils/logger/logger.h"
 #include "../include/modules/display/display.h"
 #include "../include/modules/sensors/sensor.h"
+#include "../include/modules/tof/tof.h"
 #include "../include/modules/imu/imu.h"
 #include <Arduino.h>
 #include <Wire.h>
 
 Logger logger;
+Tof tof;
 
 const int esp_sda = 1;
 const int esp_scl = 2;
@@ -104,6 +106,7 @@ void comms_init()
 
 void peripherals_init()
 {
+    tof.tof_init();
     oled_begin();
     imu_init();
     Serial.println("Peripherals init complete.");

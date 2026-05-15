@@ -11,8 +11,8 @@ bool probe_i2c_device(int address){
         Serial.println(err);
 
     if(err == 0){
-        return true;
+        return true; //when module is avalible
     }else{
-        return false;
+        return false; //when module is not avalible
     }
 }

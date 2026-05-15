@@ -9,9 +9,9 @@
 #include "../include/modules/imu/imu.h"
 #include "../include/modules/display/display.h"
 #include "../include/modules/board/buttons.h"
+#include "../include/modules/tof/tof.h"
 #include "../include/utils/logger/logger.h"
 #include "../include/config/constants.h"
-
 
 uint16_t sensor_values = 0;
 float_t error = 0;
@@ -32,8 +32,9 @@ void setup()
 
   while (DEBUG_MODE)
   {
-    sensor_read(&sensor_values, &error);
-    //Serial.println(sensor_values, BIN);
+   sensor_read(&sensor_values, &error);
+   tof.get_image();
+   delay(1);
   }
 }
 
